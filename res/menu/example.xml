@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:title="Row 1"
+		  android:id="@+id/row_1" />
+
+	<item android:title="Row 2"
+		  android:id="@+id/row_2" />
+
+	<item android:title="Row 3"
+		  android:id="@+id/row_3" />
+</menu>
