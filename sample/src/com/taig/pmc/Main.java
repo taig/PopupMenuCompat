@@ -1,20 +1,18 @@
-package com.taig.pmc.app;
+package com.taig.pmc;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-import com.taig.pmc.R;
-import com.taig.pmc.widget.PopupMenuCompat;
 
-public class Example extends Activity
+public class Main extends Activity
 {
 	@Override
 	public void onCreate( Bundle savedInstanceState )
 	{
 		super.onCreate( savedInstanceState );
-		setContentView( R.layout.example );
+		setContentView( R.layout.main );
 
 		// Launch popup-menu.
 		findViewById( R.id.button ).setOnClickListener( new View.OnClickListener()
@@ -22,14 +20,14 @@ public class Example extends Activity
 			@Override
 			public void onClick( View view )
 			{
-				PopupMenuCompat menu = PopupMenuCompat.newInstance( Example.this, view );
-				menu.inflate( R.menu.example );
+				PopupMenuCompat menu = PopupMenuCompat.newInstance( Main.this, view );
+				menu.inflate( R.menu.main );
 				menu.setOnMenuItemClickListener( new PopupMenuCompat.OnMenuItemClickListener()
 				{
 					@Override
 					public boolean onMenuItemClick( MenuItem item )
 					{
-						Toast.makeText( Example.this, item.getTitle(), Toast.LENGTH_SHORT ).show();
+						Toast.makeText( Main.this, item.getTitle(), Toast.LENGTH_SHORT ).show();
 						return true;
 					}
 				} );

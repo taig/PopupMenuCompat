@@ -1,4 +1,4 @@
-package com.taig.pmc.widget;
+package com.taig.pmc;
 
 import android.app.AlertDialog;
 import android.content.Context;
