@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import com.actionbarsherlock.internal.view.menu.MenuBuilder;
+import com.actionbarsherlock.internal.view.menu.MenuItemImpl;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 
@@ -73,9 +74,15 @@ class DonutAbsHelper extends PopupMenuAbs
 			@Override
 			public void onClick( DialogInterface dialog, int which )
 			{
-				if( menuItemClickListener != null )
+				MenuItemImpl item = (MenuItemImpl) menu.getItem( which );
+
+				if( menuItemClickListener == null )
 				{
-					menuItemClickListener.onMenuItemClick( menu.getItem( which ) );
+					item.invoke();
+				}
+				else
+				{
+					menuItemClickListener.onMenuItemClick( item );
 				}
 			}
 		} );

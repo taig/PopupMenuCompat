@@ -76,9 +76,15 @@ class DonutHelper extends PopupMenuCompat
 			@Override
 			public void onClick( DialogInterface dialog, int which )
 			{
-				if( menuItemClickListener != null )
+				DialogMenu.DialogMenuItem item = (DialogMenu.DialogMenuItem) menu.getItem( which );
+
+				if( menuItemClickListener == null && item.menuItemClickListener != null )
 				{
-					menuItemClickListener.onMenuItemClick( menu.getItem( which ) );
+					item.menuItemClickListener.onMenuItemClick( item );
+				}
+				else if( menuItemClickListener != null )
+				{
+					menuItemClickListener.onMenuItemClick( item );
 				}
 			}
 		} );

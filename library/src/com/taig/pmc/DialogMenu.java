@@ -214,6 +214,8 @@ class DialogMenu implements Menu
 
 		private boolean enabled;
 
+		OnMenuItemClickListener menuItemClickListener;
+
 		public DialogMenuItem( CharSequence title )
 		{
 			this( -1, title );
@@ -406,7 +408,8 @@ class DialogMenu implements Menu
 		@Override
 		public MenuItem setOnMenuItemClickListener( OnMenuItemClickListener menuItemClickListener )
 		{
-			throw new UnsupportedOperationException();
+			this.menuItemClickListener = menuItemClickListener;
+			return this;
 		}
 
 		@Override
