@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class DonutHelper extends PopupMenuCompat
@@ -64,14 +65,19 @@ class DonutHelper extends PopupMenuCompat
 	public void show()
 	{
 		List<MenuItem> items = menu.getItems();
-		CharSequence[] titles = new String[items.size()];
+		List<CharSequence> titles = new ArrayList<CharSequence>();
 
-		for( MenuItem item : items )
+		for( int i = 0; i < items.size(); i++ )
 		{
-			titles[item.getOrder()] = item.getTitle();
+			MenuItem item = items.get( i );
+
+			if( item.isEnabled() && item.isVisible() )
+			{
+				titles.add( item.getTitle() );
+			}
 		}
 
-		builder.setItems( titles, new DialogInterface.OnClickListener()
+		builder.setItems( titles.toArray( new CharSequence[items.size()] ), new DialogInterface.OnClickListener()
 		{
 			@Override
 			public void onClick( DialogInterface dialog, int which )

@@ -3,10 +3,16 @@ package com.taig.pmc;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 import com.actionbarsherlock.internal.view.menu.MenuBuilder;
 import com.actionbarsherlock.internal.view.menu.MenuItemImpl;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
+
+import java.util.ArrayList;
+import java.util.List;
 
 class DonutAbsHelper extends PopupMenuAbs
 {
@@ -62,14 +68,19 @@ class DonutAbsHelper extends PopupMenuAbs
 	@Override
 	public void show()
 	{
-		CharSequence[] titles = new String[menu.size()];
+		List<CharSequence> titles = new ArrayList<CharSequence>();
 
 		for( int i = 0; i < menu.size(); i++ )
 		{
-			titles[i] = menu.getItem( i ).getTitle();
+			com.actionbarsherlock.view.MenuItem item = menu.getItem( i );
+
+			if( item.isEnabled() && item.isVisible() )
+			{
+				titles.add( item.getTitle() );
+			}
 		}
 
-		builder.setItems( titles, new DialogInterface.OnClickListener()
+		builder.setItems( titles.toArray( new CharSequence[titles.size()] ), new DialogInterface.OnClickListener()
 		{
 			@Override
 			public void onClick( DialogInterface dialog, int which )
@@ -89,5 +100,7 @@ class DonutAbsHelper extends PopupMenuAbs
 
 		dialog = builder.show();
 		dialog.setCanceledOnTouchOutside( true );
+
+		ListView view = dialog.getListView();
 	}
 }
