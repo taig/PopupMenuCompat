@@ -67,10 +67,8 @@ class DonutHelper extends PopupMenuCompat
 		List<MenuItem> items = menu.getItems();
 		List<CharSequence> titles = new ArrayList<CharSequence>();
 
-		for( int i = 0; i < items.size(); i++ )
+		for( MenuItem item : items )
 		{
-			MenuItem item = items.get( i );
-
 			if( item.isEnabled() && item.isVisible() )
 			{
 				titles.add( item.getTitle() );
