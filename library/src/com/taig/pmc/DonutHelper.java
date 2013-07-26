@@ -66,21 +66,23 @@ class DonutHelper extends PopupMenuCompat
 	{
 		List<MenuItem> items = menu.getItems();
 		List<CharSequence> titles = new ArrayList<CharSequence>();
+		final List<MenuItem> enabledItems = new ArrayList<MenuItem>();
 
 		for( MenuItem item : items )
 		{
 			if( item.isEnabled() && item.isVisible() )
 			{
 				titles.add( item.getTitle() );
+				enabledItems.add(item);
 			}
 		}
 
-		builder.setItems( titles.toArray( new CharSequence[items.size()] ), new DialogInterface.OnClickListener()
+		builder.setItems( titles.toArray( new CharSequence[titles.size()] ), new DialogInterface.OnClickListener()
 		{
 			@Override
 			public void onClick( DialogInterface dialog, int which )
 			{
-				DialogMenu.DialogMenuItem item = (DialogMenu.DialogMenuItem) menu.getItem( which );
+				DialogMenu.DialogMenuItem item = (DialogMenu.DialogMenuItem) enabledItems.get(which);
 
 				if( menuItemClickListener == null && item.menuItemClickListener != null )
 				{
